@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - The DX Closet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">The DX <span>Closet</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Our Full Catalog</h2>
+
+        <!-- Filters & Search -->
+        <div class="shop-controls">
+            <div class="search-box">
+                <input type="text" id="shop-search" placeholder="Search products...">
+            </div>
+            <div class="filter-categories">
+                <button class="cat-btn active" data-category="all">All</button>
+                <button class="cat-btn" data-category="Tops">Tops</button>
+                <button class="cat-btn" data-category="Bottoms">Bottoms</button>
+                <button class="cat-btn" data-category="Outerwear">Outerwear</button>
+                <button class="cat-btn" data-category="Accessories">Accessories</button>
+            </div>
+        </div>
+
+        <div class="product-grid" id="shop-products"></div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h3>The DX Closet</h3>
+                <p>Your destination for modern fashion trends.</p>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The DX Closet. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
