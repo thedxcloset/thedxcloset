@@ -50,10 +50,8 @@ const products = [
     }
 ];
 
-// WhatsApp Number configuration (Replace with your actual phone number with country code)
 const WHATSAPP_PHONE = "85292426287";
 
-// LocalStorage helpers for persistent Cart
 function getCart() {
     return JSON.parse(localStorage.getItem('cart_dxcloset')) || [];
 }
