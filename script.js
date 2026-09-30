@@ -36,7 +36,14 @@ const products = [
         category: "Tops",
         price: 20.00,
         image: "1790747501017.jpg"
-    }
+    },
+{
+        id: 6,
+        title: "Scoop Neck Tank Top",
+        category: "Tops",
+        price: 10.00,
+        image: "1790762356251.jpg"
+}
 ];
 
 const WHATSAPP_PHONE = "85292426287";
