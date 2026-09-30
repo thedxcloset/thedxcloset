@@ -2,56 +2,28 @@
 const products = [
     {
         id: 1,
-        title: "Oversized Streetwear Tee",
+        title: "Front Button Knitted Pullover / Sleeveless",
         category: "Tops",
-        price: 25.00,
-        badge: "Hot",
-        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80"
-    },
-    {
-        id: 2,
-        title: "Loose Fit Denim Jeans",
-        category: "Bottoms",
-        price: 45.00,
+        price: 5.00,
         badge: "New",
-        image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80"
-    },
-    {
-        id: 3,
-        title: "Classic Canvas Jacket",
-        category: "Outerwear",
-        price: 65.00,
-        badge: "Sale",
-        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=500&q=80"
-    },
-    {
-        id: 4,
-        title: "Minimalist Beanie Hat",
-        category: "Accessories",
-        price: 15.00,
-        badge: "",
-        image: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=500&q=80"
-    },
-    {
-        id: 5,
-        title: "Linen Casual Shirt",
-        category: "Tops",
-        price: 35.00,
-        badge: "",
-        image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500&q=80"
-    },
-    {
-        id: 6,
-        title: "Slim Fit Chino Pants",
-        category: "Bottoms",
-        price: 40.00,
-        badge: "Hot",
-        image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80"
+        image: "1790653743515.jpg"
     }
+    /* Kamu bisa menambahkan produk ke-2, ke-3, dst. di bawah ini nanti:
+    ,{
+        id: 2,
+        title: "Nama Produk Lain",
+        category: "Bottoms",
+        price: 10.00,
+        badge: "Hot",
+        image: "nama_foto_2.jpg"
+    }
+    */
 ];
 
+// WhatsApp Number configuration (Hong Kong format)
 const WHATSAPP_PHONE = "85292426287";
 
+// LocalStorage helpers for persistent Cart
 function getCart() {
     return JSON.parse(localStorage.getItem('cart_dxcloset')) || [];
 }
@@ -148,7 +120,7 @@ function renderProductCards(items, container) {
             <img src="${product.image}" alt="${product.title}" class="product-img">
             <div class="product-info">
                 <h3 class="product-title">${product.title}</h3>
-                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-price">HK$ ${product.price.toFixed(2)}</div>
                 <button class="add-cart-btn" onclick="addToCart(${product.id})">
                     <i class="fas fa-cart-plus"></i> Add to Cart
                 </button>
@@ -169,7 +141,7 @@ function renderCartPage() {
 
     if (cart.length === 0) {
         cartTableBody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 2rem;">Your cart is empty!</td></tr>`;
-        totalPriceEl.innerText = "$0.00";
+        totalPriceEl.innerText = "HK$ 0.00";
         return;
     }
 
@@ -185,7 +157,7 @@ function renderCartPage() {
                     <span>${item.title}</span>
                 </div>
             </td>
-            <td>$${item.price.toFixed(2)}</td>
+            <td>HK$ ${item.price.toFixed(2)}</td>
             <td>
                 <div class="qty-control">
                     <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
@@ -193,7 +165,7 @@ function renderCartPage() {
                     <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
                 </div>
             </td>
-            <td>$${itemTotal.toFixed(2)}</td>
+            <td>HK$ ${itemTotal.toFixed(2)}</td>
             <td>
                 <button class="remove-btn" onclick="removeItem(${item.id})"><i class="fas fa-trash"></i></button>
             </td>
@@ -201,7 +173,7 @@ function renderCartPage() {
         cartTableBody.appendChild(tr);
     });
 
-    totalPriceEl.innerText = `$${total.toFixed(2)}`;
+    totalPriceEl.innerText = `HK$ ${total.toFixed(2)}`;
 }
 
 function updateQty(id, delta) {
@@ -238,15 +210,15 @@ function checkoutWhatsApp() {
     cart.forEach((item, index) => {
         const subtotal = item.price * item.qty;
         total += subtotal;
-        message += `${index + 1}. *${item.title}* (${item.qty}x) - $${subtotal.toFixed(2)}\n`;
+        message += `${index + 1}. *${item.title}* (${item.qty}x) - HK$ ${subtotal.toFixed(2)}\n`;
     });
 
-    message += `\n*Total Order:* $${total.toFixed(2)}\n\n`;
+    message += `\n*Total Order:* HK$ ${total.toFixed(2)}\n\n`;
     message += `Please confirm availability and shipping details. Thank you!`;
 
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${+85292426287}?text=${encoded}`, '_blank');
-                                                       }
+    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encoded}`, '_blank');
+}
 
 // Contact Form WhatsApp Redirection
 const contactForm = document.getElementById('contact-form');
@@ -268,4 +240,3 @@ if (contactForm) {
         window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
     });
 }
-
