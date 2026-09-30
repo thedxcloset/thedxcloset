@@ -19,14 +19,14 @@ const products = [
     {
         id: 3,
         title: "Short-sleeve Knit Cardigan",
-        category: "Tops", // Pilih: Tops / Bottoms / Outerwear / Accessories
+        category: "Tops",
         price: 5.00,
         image: "1790743368793.jpg"
     },
     {
         id: 4,
         title: "Tie-Front Ruffle Blouse",
-        category: "Tops", // Pilih: Tops / Bottoms / Outerwear / Accessories
+        category: "Tops",
         price: 5.00,
         image: "1790744079252.jpg"
     },
@@ -39,10 +39,8 @@ const products = [
     }
 ];
 
-// WhatsApp Number configuration (Hong Kong format)
 const WHATSAPP_PHONE = "85292426287";
 
-// LocalStorage helpers for persistent Cart
 function getCart() {
     return JSON.parse(localStorage.getItem('cart_dxcloset')) || [];
 }
