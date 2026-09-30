@@ -447,3 +447,31 @@ footer {
     .hero-content h1 { font-size: 2rem; }
     .nav-container { flex-direction: column; gap: 1rem; }
   }
+
+/* Announcement Bar Styling */
+.announcement-bar {
+    background: linear-gradient(135deg, #111111, #333333);
+    color: #ffffff;
+    text-align: center;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.announcement-bar p {
+    margin: 0;
+}
+
+.announcement-bar a {
+    color: #ff8a8a; /* Warna aksen/highlight link Instagram */
+    text-decoration: underline;
+    font-weight: 600;
+    margin-left: 3px;
+    transition: color 0.3s ease;
+}
+
+.announcement-bar a:hover {
+    color: #ffffff;
+}
+
