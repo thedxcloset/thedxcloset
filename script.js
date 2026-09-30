@@ -7,7 +7,7 @@ const products = [
         price: 5.00,
         badge: "New",
         image: "1790653743515.jpg"
-    }
+    },
     {
         id: 2,
         title: "V-neck Crop Polo Shirt",
