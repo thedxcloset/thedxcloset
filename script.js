@@ -8,16 +8,14 @@ const products = [
         badge: "New",
         image: "1790653743515.jpg"
     }
-    /* Kamu bisa menambahkan produk ke-2, ke-3, dst. di bawah ini nanti:
-    ,{
+    {
         id: 2,
         title: "V-neck crop polo shirt",
         category: "Tops",
         price: 25.00,
         badge: "Hot",
         image: "1790734962153.jpg"
-    }
-    */
+            }
 ];
 
 // WhatsApp Number configuration (Hong Kong format)
