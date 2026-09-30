@@ -15,7 +15,7 @@ const products = [
         price: 25.00,
         badge: "Hot",
         image: "1790734962153.jpg"
-            },
+    },
     {
         id: 3,
         title: "Short-sleeve Knit Cardigan",
@@ -76,7 +76,7 @@ function addToCart(id) {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
 
-    // 1. Home Page Logic (Featured Products)
+    // 1. Home Page Logic (Featured Products - Max 4 items)
     const featuredGrid = document.getElementById('featured-products');
     if (featuredGrid) {
         renderProductCards(products.slice(0, 4), featuredGrid);
@@ -147,24 +147,29 @@ function renderProductCards(items, container) {
     });
 }
 
-// Render Cart Table
+// Render Cart Table with Automatic Tiered Discounts
 function renderCartPage() {
     const cartTableBody = document.getElementById('cart-table-body');
     const totalPriceEl = document.getElementById('cart-total-price');
     const cart = getCart();
 
+    if (!cartTableBody) return;
+
     cartTableBody.innerHTML = "";
-    let total = 0;
 
     if (cart.length === 0) {
         cartTableBody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 2rem;">Your cart is empty!</td></tr>`;
-        totalPriceEl.innerText = "HK$ 0.00";
+        if (totalPriceEl) totalPriceEl.innerText = "HK$ 0.00";
         return;
     }
 
+    let rawTotal = 0;
+    let totalQty = 0;
+
     cart.forEach(item => {
         const itemTotal = item.price * item.qty;
-        total += itemTotal;
+        rawTotal += itemTotal;
+        totalQty += item.qty;
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -190,7 +195,32 @@ function renderCartPage() {
         cartTableBody.appendChild(tr);
     });
 
-    totalPriceEl.innerText = `HK$ ${total.toFixed(2)}`;
+    // Discount Calculation Logic (Tiered Discount Strategy)
+    let discountPercent = 0;
+    if (totalQty === 1) {
+        discountPercent = 5;
+    } else if (totalQty >= 2 && totalQty <= 3) {
+        discountPercent = 10;
+    } else if (totalQty >= 4 && totalQty <= 5) {
+        discountPercent = 15;
+    } else if (totalQty > 5) {
+        discountPercent = 20;
+    }
+
+    const discountAmount = rawTotal * (discountPercent / 100);
+    const finalTotal = rawTotal - discountAmount;
+
+    if (totalPriceEl) {
+        totalPriceEl.innerHTML = `
+            <div style="text-align: right; font-size: 0.95rem; line-height: 1.6;">
+                <div>Subtotal (${totalQty} pcs): <strong>HK$ ${rawTotal.toFixed(2)}</strong></div>
+                ${discountPercent > 0 ? `<div style="color: #e74c3c;">Discount (${discountPercent}%): <strong>-HK$ ${discountAmount.toFixed(2)}</strong></div>` : ''}
+                <div style="font-size: 1.25rem; font-weight: 700; margin-top: 5px; color: #111;">
+                    Total: HK$ ${finalTotal.toFixed(2)}
+                </div>
+            </div>
+        `;
+    }
 }
 
 function updateQty(id, delta) {
@@ -213,7 +243,7 @@ function removeItem(id) {
     renderCartPage();
 }
 
-// Checkout via WhatsApp
+// Checkout via WhatsApp with Discount Included
 function checkoutWhatsApp() {
     const cart = getCart();
     if (cart.length === 0) {
@@ -221,16 +251,39 @@ function checkoutWhatsApp() {
         return;
     }
 
+    let rawTotal = 0;
+    let totalQty = 0;
     let message = `Hello *The DX Closet*, I'd like to place an order:\n\n`;
-    let total = 0;
 
     cart.forEach((item, index) => {
         const subtotal = item.price * item.qty;
-        total += subtotal;
+        rawTotal += subtotal;
+        totalQty += item.qty;
         message += `${index + 1}. *${item.title}* (${item.qty}x) - HK$ ${subtotal.toFixed(2)}\n`;
     });
 
-    message += `\n*Total Order:* HK$ ${total.toFixed(2)}\n\n`;
+    // Calculate Discount
+    let discountPercent = 0;
+    if (totalQty === 1) {
+        discountPercent = 5;
+    } else if (totalQty >= 2 && totalQty <= 3) {
+        discountPercent = 10;
+    } else if (totalQty >= 4 && totalQty <= 5) {
+        discountPercent = 15;
+    } else if (totalQty > 5) {
+        discountPercent = 20;
+    }
+
+    const discountAmount = rawTotal * (discountPercent / 100);
+    const finalTotal = rawTotal - discountAmount;
+
+    message += `\n------------------------------`;
+    message += `\n*Subtotal (${totalQty} pcs):* HK$ ${rawTotal.toFixed(2)}`;
+    if (discountPercent > 0) {
+        message += `\n*Discount (${discountPercent}%):* -HK$ ${discountAmount.toFixed(2)}`;
+    }
+    message += `\n*Grand Total:* HK$ ${finalTotal.toFixed(2)}`;
+    message += `\n------------------------------\n\n`;
     message += `Please confirm availability and shipping details. Thank you!`;
 
     const encoded = encodeURIComponent(message);
@@ -256,4 +309,4 @@ if (contactForm) {
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
     });
-}
+            }
