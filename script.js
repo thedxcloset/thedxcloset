@@ -43,7 +43,14 @@ const products = [
         category: "Tops",
         price: 10.00,
         image: "1790762356251.jpg"
-}
+},
+    {
+        id: 7,
+        title: "Jelly Bra",
+        category: "Innerwear",
+        price: 10.00,
+        image: "1790762880899.jpg"
+    }
 ];
 
 const WHATSAPP_PHONE = "85292426287";
