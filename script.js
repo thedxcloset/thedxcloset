@@ -29,6 +29,13 @@ const products = [
         category: "Tops", // Pilih: Tops / Bottoms / Outerwear / Accessories
         price: 5.00,
         image: "1790744079252.jpg"
+    },
+    {
+        id: 5,
+        title: "Camisole Peplum Top",
+        category: "Tops",
+        price: 5.00,
+        image: "1790747501017.jpg"
     }
 ];
 
