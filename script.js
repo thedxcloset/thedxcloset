@@ -4,7 +4,7 @@ const products = [
         id: 1,
         title: "Front Button Knitted Pullover / Sleeveless",
         category: "Tops",
-        price: 5.00,
+        price: 20.00,
         badge: "New",
         image: "1790653743515.jpg"
     },
@@ -20,21 +20,21 @@ const products = [
         id: 3,
         title: "Short-sleeve Knit Cardigan",
         category: "Tops",
-        price: 5.00,
+        price: 20.00,
         image: "1790743368793.jpg"
     },
     {
         id: 4,
         title: "Tie-Front Ruffle Blouse",
         category: "Tops",
-        price: 5.00,
+        price: 20.00,
         image: "1790744079252.jpg"
     },
     {
         id: 5,
         title: "Camisole Peplum Top",
         category: "Tops",
-        price: 5.00,
+        price: 20.00,
         image: "1790747501017.jpg"
     }
 ];
