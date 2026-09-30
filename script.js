@@ -247,3 +247,25 @@ function checkoutWhatsApp() {
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/${+85292426287}?text=${encoded}`, '_blank');
                                                        }
+
+// Contact Form WhatsApp Redirection
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('contact-name').value;
+        const email = document.getElementById('contact-email').value;
+        const userMessage = document.getElementById('contact-message').value;
+
+        let message = `Hello *The DX Closet*,\n\n`;
+        message += `You have a new inquiry from your website:\n`;
+        message += `👤 *Name:* ${name}\n`;
+        message += `✉️ *Email:* ${email}\n\n`;
+        message += `💬 *Message:*\n${userMessage}`;
+
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`, '_blank');
+    });
+}
+
