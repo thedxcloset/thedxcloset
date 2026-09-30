@@ -46,20 +46,24 @@
                     <span>Tsing Yi, Hong Kong</span>
                 </div>
             </div>
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
+            
+            <!-- Contact Form -->
+            <form class="contact-form" id="contact-form">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" id="contact-name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" id="contact-email" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
                     <label>Message</label>
-                    <input type="text" placeholder="How can we help you?" required>
+                    <textarea id="contact-message" rows="4" placeholder="How can we help you?" required></textarea>
                 </div>
-                <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">Send Message</button>
+                <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">
+                    <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                </button>
             </form>
         </div>
     </main>
