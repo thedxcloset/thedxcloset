@@ -22,6 +22,13 @@ const products = [
         category: "Tops", // Pilih: Tops / Bottoms / Outerwear / Accessories
         price: 5.00,
         image: "1790743368793.jpg"
+    },
+    {
+        id: 4,
+        title: "Tie-Front Ruffle Blouse",
+        category: "Tops", // Pilih: Tops / Bottoms / Outerwear / Accessories
+        price: 5.00,
+        image: "1790744079252.jpg"
     }
 ];
 
