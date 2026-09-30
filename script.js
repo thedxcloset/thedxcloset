@@ -15,7 +15,14 @@ const products = [
         price: 25.00,
         badge: "Hot",
         image: "1790734962153.jpg"
-            }
+            },
+    {
+        id: 3,
+        title: "Short-sleeve Knit Cardigan",
+        category: "Tops", // Pilih: Tops / Bottoms / Outerwear / Accessories
+        price: 5.00,
+        image: "1790743368793.jpg"
+    }
 ];
 
 // WhatsApp Number configuration (Hong Kong format)
