@@ -10,7 +10,7 @@ const products = [
     }
     {
         id: 2,
-        title: "V-neck crop polo shirt",
+        title: "V-neck Crop Polo Shirt",
         category: "Tops",
         price: 25.00,
         badge: "Hot",
